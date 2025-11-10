@@ -32,7 +32,7 @@ def soma(A, B):
         else:
             C[chave] = valor
 
-    return C
+    return matriz_esparsa(C)
 
 def mult_escalar(A, x):
     C = {}
@@ -40,10 +40,24 @@ def mult_escalar(A, x):
     for chave, valor in A.data.items():
         C[chave] = valor * x
 
-    return C
+    return matriz_esparsa(C)
 
 def mult(A, B):
-    return
+    C = {}
+    B_temp = {}
+
+    for chave, valor in B.data.items():
+        if not chave[0] in B_temp:
+            B_temp[chave[0]] = []
+
+        B_temp[chave[0]].append((chave[1], valor))
+    
+    for chave, valor in A.data.items():
+        if chave[1] in B_temp:
+            for j in B_temp[chave[1]]:
+                C[chave[0], j[0]] = C.get((chave[0], j[0]), 0) + valor * j[1]
+    
+    return matriz_esparsa(C)
 
 matriz1 = [[0,0,0,0,1],
      [0,2,0,0,3],
@@ -72,15 +86,4 @@ for i in range(5):
 AmaisB = soma(A,B)
 Ax3 = mult_escalar(A,3)
 At = A.transpor()
-
-print('Valores não nulos de A:')
-print(((chave, valor) for chave, valor in A.data.items()))
-print('Valores não nulos de B:')
-print(((chave, valor) for chave, valor in B.data.items()))
-print('Valores não nulos de A+B:')
-print(((chave, valor) for chave, valor in AmaisB.data.items()))
-print('Valores não nulos de A * 3:')
-print(((chave, valor) for chave, valor in Ax3.data.items()))
-print('Valores não nulos de At:')
-print(((chave, valor) for chave, valor in At.data.items()))
-
+AxB = mult(A, B)
