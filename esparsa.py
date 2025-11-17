@@ -19,20 +19,20 @@ class transposta:
         return self.original.acessar(j,i)
     
 def soma(A, B):
-    C = {}
+    C = {} # O(1)
 
-    for chave, valor in A.data.items():
-        C[chave] = valor
+    for chave, valor in A.data.items(): #O(kA)
+        C[chave] = valor #O(1)
 
-    for chave, valor in B.data.items():
-        if chave in C:
-            C[chave] += valor
-            if C[chave] == 0:
-                del C[chave]
+    for chave, valor in B.data.items(): #O(kB)
+        if chave in C: #O(1)
+            C[chave] += valor #O(1)
+            if C[chave] == 0: #O(1)
+                del C[chave] #O(1)
         else:
-            C[chave] = valor
+            C[chave] = valor #O(1)
 
-    return matriz_esparsa(C)
+    return matriz_esparsa(C) #O(kA + kB)
 
 def mult_escalar(A, x):
     C = {}
