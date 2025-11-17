@@ -121,7 +121,7 @@ def mult(A, B):
                 # Somamos em C[chave[0], j_valor[0]] o valor atual
                 # + o valor armazenado em A[chave] * o valor armazenado
                 # em B_temp[chave[1]]
-                C[chave[0], j_valor[0]] = C.acessar(chave[0], j_valor[0]) + valor * j_valor[1] # O(1)
+                C[chave[0], j_valor[0]] = C.get(chave[0], j_valor[0]) + valor * j_valor[1] # O(1)
     # Retorna a a matriz_esparsa com o dicionário C
     return matriz_esparsa(C) # O(1)
     # Complexidade total: O(kA * dB)
