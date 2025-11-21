@@ -43,7 +43,7 @@ class transposta:
         self.colunas = linhas
         self.original = original
     def acessar(self, i, j):
-        return self.original.acessar(self.colunas, self.linhas)
+        return self.original.acessar(j, i)
     
 
 # Realiza a soma de duas matrizes tradicionais A e B
@@ -52,7 +52,7 @@ def soma(A, B):
     C = matriz_tradicional(A.linhas, A.colunas)
     # Para cada linha de A
     for i in range(A.linhas):
-        # Para cada linha de B
+        # Para cada coluna de A
         for j in range(A.colunas):
             # C[i][j] = A[i][j] + B[i][j]
             valor_soma = A.acessar(i, j) + B.acessar(i, j)

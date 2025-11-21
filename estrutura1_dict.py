@@ -1,11 +1,11 @@
 # Implementação da estrutura 1
-# Represetnta a matriz esparsa como um dicionário que com chave (i,j) e valor o elemento na posição (i,j)
+# Representa a matriz esparsa como um dicionário que com chave (i,j) e valor o elemento na posição (i,j)
 # Armazena apenas elementos não nulos da matriz
 
 # **Todas as complexidades escritas aqui são a complexidade esperada**
 
 # Classe geral que define a estrutura 1
-class matriz_esparsa:
+class matriz_esparsa_dict:
     # Inicia a matriz_esparsa com um dicionário de elementos não nulos em data
     def __init__(self, data):
         # Atribui o dicionário de elementos não nulos para o data da matriz_esparsa
@@ -44,7 +44,7 @@ class matriz_esparsa:
             # C[chave] vai ser self[chave] multiplicado pelo escalar
             C[chave] = valor * x # O(1)
         # Retorna a matriz esparsa com o dicionário C
-        return matriz_esparsa(C) # O(1)
+        return matriz_esparsa_dict(C) # O(1)
         # Complexidade total: O(k)
         
     # Como armazena apenas os elementos não nulos,
@@ -84,7 +84,7 @@ def soma(A, B):
             # Atribui o valor de B[chave] em C[chave]
             C[chave] = valor #O(1) 
     # Retorna a a matriz_esparsa com o dicionário C
-    return matriz_esparsa(C) #O(1)
+    return matriz_esparsa_dict(C) #O(1)
     # Complexidade total: O(kA + kB)
 
 # Multiplica as matrizes A e B
@@ -123,5 +123,5 @@ def mult(A, B):
                 # em B_temp[chave[1]]
                 C[chave[0], j_valor[0]] = C.get(chave[0], j_valor[0]) + valor * j_valor[1] # O(1)
     # Retorna a a matriz_esparsa com o dicionário C
-    return matriz_esparsa(C) # O(1)
+    return matriz_esparsa_dict(C) # O(1)
     # Complexidade total: O(kA * dB)
